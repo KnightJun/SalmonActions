@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>Arrow.png</file>
+        <file>Copy.png</file>
+        <file>CopyStamp.png</file>
+        <file>Eraser.png</file>
+        <file>OrderStamp.png</file>
+        <file>PasteImage.png</file>
+        <file>Pencil.png</file>
+        <file>Polyline.png</file>
+        <file>Quit.png</file>
+        <file>Record.png</file>
+        <file>RectCircle.png</file>
+        <file>Redo.png</file>
+        <file>Save.png</file>
+        <file>Text.png</file>
+        <file>Undo.png</file>
+        <file>Mosaic.png</file>
+        <file>Move.png</file>
+        <file>StopRecord.png</file>
+        <file>Info.png</file>
+        <file>LongShot.png</file>
+        <file>BeginLongShot.png</file>
+        <file>ReAdjust.png</file>
+        <file>MoveHorizontal.png</file>
+        <file>MoveVertical.png</file>
+        <file>Close.png</file>
+        <file>Keyboard.png</file>
+        <file>Setting.png</file>
+        <file>Location.png</file>
+        <file>Pause.png</file>
+        <file>Play.png</file>
+        <file>Gif.png</file>
+        <file>Png.png</file>
+        <file>Webp.png</file>
+        <file>Dga.png</file>
+        <file>Return.png</file>
+    </qresource>
+</RCC>
