@@ -29,6 +29,9 @@ int main(int argc, char *argv[])
     act2->addButton(SalActIcon::PasteImage());
     act2->addButton(SalActIcon::Pencil());
     act2->addButton(SalActIcon::Keyboard());
+    act2->addLabel("Secondary Mode");
+    act2->addLabel("Secondary Mode");
+    act2->addLabel("Secondary Mode");
     act->addLowWidget(act2);
     QObject::connect(act, &ActionsBar::sigMove, [&](const QPoint &pos){
         testLabel->move(pos);

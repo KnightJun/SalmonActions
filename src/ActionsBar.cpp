@@ -54,7 +54,7 @@ void ActionsBar::paintEvent(QPaintEvent *event)
     painter.setPen(qRgb(30,30,30));
     painter.setBrush(Qt::white);
     painter.drawRect(0, 0, 
-    mActWidth + mBoardWidth * 2 - 1, 
+    mMainBarWidth - 1, 
     mBtnSize.height() + mBoardWidth * 2 - 1);
 }
 
@@ -181,11 +181,11 @@ void ActionsBar::reAdjustGeo()
     newGeo.setX(this->x());
     newGeo.setY(this->y());
     newGeo.setHeight(mBtnSize.height() + mBoardWidth * 2);
-    newGeo.setWidth(mActWidth + mBoardWidth * 2);
+    newGeo.setWidth(mMainBarWidth);
     int newBarTop = newGeo.height() - mBoardWidth;
     for (ActionsBar *actbar : mLowBarList)
     {
-        int barWidth = actbar->mActWidth + mBoardWidth * 2;
+        int barWidth = actbar->mMainBarWidth;
         int barHeight = actbar->mBtnSize.height() + mBoardWidth * 2;
         actbar->setGeometry(0, newBarTop, 
             barWidth, barHeight);
@@ -210,10 +210,8 @@ void ActionsBar::addLowWidget(ActionsBar* lowWidget)
     lowWidget->setParent(this);
     mLowBarList.append(lowWidget);
     lowWidget->setGeometry(0, mBtnSize.height() + mBoardWidth * 2 - 1, lowWidget->width(), lowWidget->height());
+
     this->reAdjustGeo();
-    // mLowWidget = lowWidget;
-    // connect(mLowWidget, &QWidget::destroyed, this, &ActionsBar::closeLowWidget);
-    // adjustLowWidget();
     lowWidget->setVisible(true);
     return;
 }
@@ -265,9 +263,13 @@ void ActionsBar::readjustWidth()
             dstWidth += actWid->width();
         }
     }
-    mActWidth = dstWidth;
-    dstWidth += mBoardWidth * 2;
-    this->setFixedWidth(dstWidth);
+    mMainBarWidth = dstWidth += mBoardWidth * 2;
+    for (ActionsBar *actbar : mLowBarList)
+    {
+        if(actbar->mMainBarWidth > dstWidth){
+            dstWidth = actbar->mMainBarWidth;
+        }
+    }
     this->setGeometry(this->x() + (srcWidth - dstWidth), this->y()
         , dstWidth, this->height());
 }
@@ -306,7 +308,7 @@ void ActionsBar::followAdjust(const QRect& mainRect)
     QPoint pos = QWidget::mapToGlobal(mainRect.topLeft());
     QRect deskRt = this->windowHandle()->screen()->availableGeometry();
     int mWidHeight = this->height() + (mLowWidget ? mLowWidget->height():0);
-    int posX = mainRect.right() - this->width(), posY = mainRect.bottom() + mGap;
+    int posX = mainRect.right() - mMainBarWidth, posY = mainRect.bottom() + mGap;
     if(mMoveBtn && mMoveBtn->isMoving()){
         if(showOnTop){
             posY = mainRect.y() - this->height() - mGap;

@@ -55,7 +55,7 @@ private:
     bool mHasMouse = false;
     QList<QWidget *> mActionList;
     QList<ActionsBar *> mLowBarList;
-    int mActWidth = 0;
+    int mMainBarWidth = 0;
     QSize mBtnSize;
     int mGap = 8;
     int mBoardWidth = 1;
